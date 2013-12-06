@@ -1,0 +1,282 @@
+* {
+    padding: 0;
+    margin: 0;
+    border: none;
+    font-family: Verdana, Geneva, sans-serif;
+}
+
+body {
+    font-size: 14px;
+}
+
+small {
+    font-size: 11px;
+    margin: 6px 0 6px 0;
+}
+
+p { 
+    margin-bottom: 12px;
+}
+h1 {
+    font-size: 22px;
+    margin: 18px 0 12px 0;
+}
+h2 {
+    font-size: 20px;
+    margin: 14px 0 8px 0;
+}
+h3 {
+    font-size: 18px;
+    margin: 10px 0 6px 0;
+}
+h4 { 
+    font-size: 16px;
+}
+h5 { 
+    font-size: 14px;
+}
+h6 { 
+    font-size: 12px;
+}
+
+#wrapper {
+    width: 1100px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+header {
+    background-color: #ccc;
+    height: 120px;
+}
+
+.logo {
+    width: 100px;
+    height: 100px;
+    position: absolute;
+    margin: 10px;
+}
+
+header .logo img {
+    width: 100%;
+    height: auto;
+}
+
+nav {
+    padding-top: 15px;
+    margin-left: 150px;
+}
+
+nav ul {
+    width: 100%;
+    list-style: none;
+} 
+
+nav ul li {
+    display: inline-block;
+    margin: 0 20px 0 20px;
+    border: 1px solid #999;
+    border-radius:  5px;
+    padding: 5px 10px 10px 5px;
+}
+
+nav ul li a {
+    font-size: 22px;
+    color: #666;
+    text-decoration: none;
+}
+
+nav ul li a:hover {
+    color: #333;
+    text-decoration: underline;
+}
+
+nav ul li:hover ul {
+    display: block;
+}
+
+/*li:first-child a {color: #F0F;}*/
+
+nav ul ul {
+    position: absolute;
+    width: 200px;
+    background-color: #FFC;
+    display: none;
+    border: 1px solid #FC0;
+    margin-top: 11px;
+    padding: 5px;
+    border-radius: 20px 0 20px 0;
+}
+
+nav ul ul li {
+    display: block;
+    border: none;
+    border-radius: 0;
+    text-align: center;
+    margin: 5px 0 5px 0;
+    padding: 5px 0 5px 0;
+    border-bottom: 1px dotted #FFCC00;
+}
+
+nav ul ul li:last-child {
+    border: none;
+}
+
+nav ul ul li a {
+    font-size: 16px;
+}
+
+.banner {
+    width: 1000px;
+    /*height: 300px;*/
+    background-color: #F00;
+    margin: 20px auto 20px auto;
+}
+
+.banner img {
+    width: 100%;
+    height: 100%;
+}
+
+/*Nos imediatos do section (primeiro nível de tags div)*/
+section > div {
+    padding: 10px;
+}
+
+/*Definindo o container das colunas*/
+.row.before, .row.after {
+    content: " ";
+    display: table;
+}
+
+.row.after {
+    clear: both;
+}
+
+/*Definindo as colunas do site*/
+.col-10, .col-9, .col-8, .col-7, .col-6, .col-5, .col-4, .col-3, .col-2, .col-1 {
+    position: relative;
+    min-height: 1px;
+    float: left;
+}
+
+.col-10 {
+    width: 100%;
+}
+
+.col-9 {
+    width: 90%;
+}
+
+.col-8 {
+    width: 80%;
+}
+
+.col-7 {
+    width: 70%;
+}
+
+.col-6 {
+    width: 60%;
+}
+
+.col-5 {
+    width: 50%;
+}
+
+.col-4 {
+    width: 40%;
+}
+
+.col-3 {
+    width: 30%;
+}
+
+.col-2 {
+    width: 20%;
+}
+
+.col-1 {
+    width: 10%;
+}
+
+.sobre {
+    background-color: #CCC;
+    min-height: 300px;
+}
+
+.sobre h2 {
+    color: #F00;
+}
+
+.noticias {
+    background-color: #FFC;
+    min-height: 300px;
+}
+
+.produtos {
+    background-color: #FCF;
+    min-height: 300px;
+}
+
+.noticias article a, .produtos article a {
+    color: #900;
+    text-decoration: none;
+    font-size: 16px;
+}
+
+.noticias article a span, .produtos article a span {
+    font-size: 22px;
+}
+
+.noticias article, .produtos article {
+    margin-bottom: 20px;
+    padding-bottom: 6px;
+    border-bottom: 1px dashed #FFCC00;
+    
+}
+
+.noticias article a:hover span, .produtos article a:hover span {
+    color: #00C;
+}
+
+.produtos article img {
+    width: 100px;
+    height: auto;
+    float: left;
+    margin: 0 15px 15px 0;
+}
+
+@media print {
+    * { color: #000!important; }
+}
+
+@media (min-width: 800px) and (max-width: 1100px) {
+    #wrapper {
+        width: 100%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .banner {
+        width: 100%;
+    }
+}
+
+@media (max-width: 799px) {
+    #wrapper {
+        width: 100%;
+    }
+
+    /*Definindo as colunas do site*/
+    .col-10, .col-9, .col-8, .col-7, .col-6, .col-5, .col-4, .col-3, .col-2, .col-1 {
+        position: relative;
+        min-height: 1px;
+        float: inherit;
+        width: 100%;
+    }
+
+    .banner {
+        width: 100%;
+    }
+}
