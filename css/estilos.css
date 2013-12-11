@@ -1,8 +1,54 @@
+
+@font-face {
+    font-family: 'ubuntu_monobold';
+    src: url('fonts/ubuntu-mono/ubuntumono-b-webfont.eot');
+    src: url('fonts/ubuntu-mono/ubuntumono-b-webfont.eot?#iefix') format('embedded-opentype'),
+         url('fonts/ubuntu-mono/ubuntumono-b-webfont.woff') format('woff'),
+         url('fonts/ubuntu-mono/ubuntumono-b-webfont.ttf') format('truetype'),
+         url('fonts/ubuntu-mono/ubuntumono-b-webfont.svg#ubuntu_monobold') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'ubuntu_monobold_italic';
+    src: url('fonts/ubuntu-mono/ubuntumono-bi-webfont.eot');
+    src: url('fonts/ubuntu-mono/ubuntumono-bi-webfont.eot?#iefix') format('embedded-opentype'),
+         url('fonts/ubuntu-mono/ubuntumono-bi-webfont.woff') format('woff'),
+         url('fonts/ubuntu-mono/ubuntumono-bi-webfont.ttf') format('truetype'),
+         url('fonts/ubuntu-mono/ubuntumono-bi-webfont.svg#ubuntu_monobold_italic') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'ubuntu_monoregular';
+    src: url('fonts/ubuntu-mono/ubuntumono-r-webfont.eot');
+    src: url('fonts/ubuntu-mono/ubuntumono-r-webfont.eot?#iefix') format('embedded-opentype'),
+         url('fonts/ubuntu-mono/ubuntumono-r-webfont.woff') format('woff'),
+         url('fonts/ubuntu-mono/ubuntumono-r-webfont.ttf') format('truetype'),
+         url('fonts/ubuntu-mono/ubuntumono-r-webfont.svg#ubuntu_monoregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'ubuntu_monoitalic';
+    src: url('fonts/ubuntu-mono/ubuntumono-ri-webfont.eot');
+    src: url('fonts/ubuntu-mono/ubuntumono-ri-webfont.eot?#iefix') format('embedded-opentype'),
+         url('fonts/ubuntu-mono/ubuntumono-ri-webfont.woff') format('woff'),
+         url('fonts/ubuntu-mono/ubuntumono-ri-webfont.ttf') format('truetype'),
+         url('fonts/ubuntu-mono/ubuntumono-ri-webfont.svg#ubuntu_monoitalic') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+
 * {
     padding: 0;
     margin: 0;
     border: none;
-    font-family: Verdana, Geneva, sans-serif;
+    font-family: ubuntu_monoregular, Verdana, Geneva, sans-serif;
 }
 
 body {
@@ -14,7 +60,7 @@ small {
     margin: 6px 0 6px 0;
 }
 
-p { 
+p {
     margin-bottom: 12px;
 }
 h1 {
@@ -29,13 +75,13 @@ h3 {
     font-size: 18px;
     margin: 10px 0 6px 0;
 }
-h4 { 
+h4 {
     font-size: 16px;
 }
-h5 { 
+h5 {
     font-size: 14px;
 }
-h6 { 
+h6 {
     font-size: 12px;
 }
 
@@ -63,14 +109,18 @@ header .logo img {
 }
 
 nav {
-    padding-top: 15px;
+    padding-top: 30px;
     margin-left: 150px;
+}
+
+ui, li {
+    z-index: 1000;
 }
 
 nav ul {
     width: 100%;
     list-style: none;
-} 
+}
 
 nav ul li {
     display: inline-block;
@@ -81,7 +131,7 @@ nav ul li {
 }
 
 nav ul li a {
-    font-size: 22px;
+    font-size: 25px;
     color: #666;
     text-decoration: none;
 }
@@ -128,9 +178,9 @@ nav ul ul li a {
 
 .banner {
     width: 1000px;
-    /*height: 300px;*/
+    height: 200px;
     background-color: #F00;
-    margin: 20px auto 20px auto;
+    margin: 10px auto 10px auto;
 }
 
 .banner img {
@@ -141,6 +191,7 @@ nav ul ul li a {
 /*Nos imediatos do section (primeiro nível de tags div)*/
 section > div {
     padding: 10px;
+    border: 1px solid #CCC;
 }
 
 /*Definindo o container das colunas*/
@@ -202,7 +253,7 @@ section > div {
 
 .sobre {
     background-color: #CCC;
-    min-height: 300px;
+    min-height: 325px;
 }
 
 .sobre h2 {
@@ -210,13 +261,14 @@ section > div {
 }
 
 .noticias {
-    background-color: #FFC;
-    min-height: 300px;
+    /*background-color: #FFC;*/
+    background-color: #FFF;
+    min-height: 325px;
 }
 
 .produtos {
-    background-color: #FCF;
-    min-height: 300px;
+    background-color: #CCC;
+    min-height: 325px;
 }
 
 .noticias article a, .produtos article a {
@@ -233,7 +285,7 @@ section > div {
     margin-bottom: 20px;
     padding-bottom: 6px;
     border-bottom: 1px dashed #FFCC00;
-    
+
 }
 
 .noticias article a:hover span, .produtos article a:hover span {
@@ -279,4 +331,92 @@ section > div {
     .banner {
         width: 100%;
     }
+}
+
+table {
+    border-spacing: 0px;
+}
+
+label {
+    font-size: 14px;
+    color: #464646;
+    padding-right: 4px;
+}
+
+.lb-required:before {
+    content:'*';
+}
+
+input[type="text"],
+input:not([type]) {
+    outline: none;
+    font-size: 18px;
+    border-radius: 4px;
+    padding: 3px;
+    margin: 5px 0 5px 0;
+    border: 1px solid rgb(170, 170, 170);
+    /*color: #464646;*/
+    color: #000;
+    background-color: #FFF;
+}
+
+input[type="text"]:not([readonly]):focus,
+input:not([type]):not([readonly]):focus {
+    border: 1px solid rgb(80, 80, 80);
+    color: #000;
+    box-shadow: 0px 0px 0px rgba(0, 0, 0, 0.5) inset, 0px 0px 10px rgba(34, 34, 34, 1);
+}
+
+input[type="text"][readonly],
+input[type="text"]:disabled,
+input[readonly]:not([type]),
+input:not([type]):disabled {
+    color: #6a6a6a;
+    outline: none;
+
+    background-color: rgb(228, 228, 228);
+    border: 1px solid rgb(170, 170, 170);
+}
+
+button,
+input[type="button"]{
+    outline: none;
+    cursor: pointer;
+    display: inline-block;
+    background-color: rgb(230, 230, 230);
+    background-repeat: no-repeat;
+    background-image:
+        linear-gradient(rgb(255, 255, 255), rgb(255, 255, 255) 25%, rgb(210, 210, 210));
+    text-shadow: 0px 1px 1px rgba(255, 255, 255, 0.75);
+    color: #464646;
+    line-height: normal;
+    border-width: 1px;
+    border-style: solid;
+    border-color: rgba(0, 0, 0, 0.3) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+    border-image: none;
+    border-radius: 4px 4px 4px 4px;
+    box-shadow: 0px 1px 0px rgba(255, 255, 255, 0.2) inset, 0px 1px 2px rgba(0, 0, 0, 0.05);
+    overflow: visible;
+    vertical-align: middle;
+    text-align: center;
+    font-size: 15px;
+    padding: 5px;
+}
+
+button:not([disabled]):hover,
+button:not([disabled]):focus,
+input[type="button"]:not([disabled]):focus,
+input[type="button"]:not([disabled]):hover{
+        border: 1px solid rgb(80, 80, 80);
+        color: #000;
+        box-shadow: 0px 0px 0px rgba(0, 0, 0, 0.5) inset, 0px 0px 10px rgba(34, 34, 34, 0.6);
+}
+
+button:not([disabled]):active,
+input[type="button"]:not([disabled]):active{
+    border: 1px solid rgb(80, 80, 80);
+    color: #000;
+    box-shadow: 0px 0px 0px rgba(0, 0, 0, 0.5) inset, 0px 0px 10px rgba(34, 34, 34, 0.6);
+    background-image:
+        linear-gradient(rgb(210, 210, 210), rgb(210, 210, 210) 25%, rgb(210, 210, 210));
 }

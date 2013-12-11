@@ -4,15 +4,86 @@
         <meta charset="utf-8">
         <title>Título da página</title>
         <link rel="stylesheet" type="text/css" href="css/estilos.css">
+
+        <script type="text/javascript" src="js/jquery/jquery-2.0.3.min.js"></script>
+        <script type="text/javascript" src="js/jquery/jquery.deserialize.min.js"></script>
+        <script type="text/javascript" src="js/jquery/jquery.inputmask.bundle.min.js"></script>
+        <script>
+            jQuery( document ).ready(function( $ ) {
+
+                function trocaFoco(atual) {
+                    var nextIndex = $('input').index(atual) + 1;
+                    if ($('input')[nextIndex]) {
+                        if ($($('input')[nextIndex]).attr('readonly')) {
+                                trocaFoco($($('input')[nextIndex]));
+                        } else {
+                            $('input')[nextIndex].select();
+                        }
+                    } else {
+                        $('button').focus();
+                    }
+                }
+
+                function consultar(cep) {
+//                    {
+//                        "retorno":true,
+//                        "info": {
+//                            "CEP":"89801022",
+//                            "ENDERECO":"AVENIDA NEREU RAMOS - E",
+//                            "COMPLEMENTO":"- de  1058 a  1471",
+//                            "BAIRRO":"CENTRO",
+//                            "CIDADE":"CHAPEC\u00d3",
+//                            "UF":"SC"
+//                        }
+//                    }
+                    $.ajax({
+                        data: {cep: cep.replace(/[^\d]+/g,'')},
+                        url: 'http://www.idealog.com.br/nilvanio/cep.php',
+                        success: function(response) {
+                            $('#form').deserialize(response.info);
+                            $('#cep').val(cep.replace(/[^\d]+/g,''));
+
+                            $('input:not([id=cep])').each(function() {
+                                $(this).val() && $(this).attr('readonly', true);
+                            });
+                            trocaFoco($('#cep'));
+                        },
+                        dataType: 'json'
+                    });
+                }
+
+                $('#cep').inputmask('99999-999', {placeholder: ' '});
+                $('#cep').bind('change', function() {
+                    if (this.value) {
+                        consultar(this.value);
+                    }
+                    $('#limpar').click();
+                });
+
+                $('#limpar').bind('click', function() {
+                    $('#cep').focus();
+                    $('#form')[0].reset();
+                    $('input:not([id=cep])').each(function() {
+                        $(this).attr('readonly', false);
+                    });
+                });
+                $('input').bind('keydown', function(e) {
+                    if (e.keyCode === 13) {
+                        e.preventDefault();
+                        trocaFoco(this);
+                    }
+                });
+
+                $('#cep').select();
+            });
+        </script>
     </head>
 
     <body>
-
         <div id="wrapper">
-
             <header>
                 <div class="logo">
-                    <img src="img/ninja.png" alt="">
+                    <img src="img/pinguin_os-tux-ubuntu-2013.png" alt="">
                 </div>
                 <nav>
                     <ul>
@@ -37,62 +108,100 @@
             </header>
 
             <div class="main">
-                <div class="banner"><img src="img/wallpaper530296-541x200.jpg" alt=""></div>
+                <div class="banner"><img src="img/wallls.com-12484.jpg" alt=""></div>
             </div>
 
             <div class="row">
-                <section class="col-4 sobre">
+                <section class="col-2 sobre">
                     <div>
                         <h2>Missão</h2>
                         <p>Oferecer uma educação inovadora com qualidade no seu conteúdo e nos meios de ensino.</p>
                         <h2>Objetivos</h2>
-                        <p>* Empreender um processo educativo que favoreça o desenvolvimento de indivíduos.</p>
-                        <p>* A formação de profissionais e especialistas de nível superior nas áreas do conhecimento</p>
+                        <p>* Empreender um processo educativo que favoreça o desenvolvimento...</p>
+                        <p>* A formação de profissionais e especialistas de nível superior...</p>
                     </div>
                 </section>
-                <section class="col-3 noticias">
+                <section class="col-6 noticias">
                     <div>
-                        
-                        <article>
-                            <h3>Primeira aula da POS de TI na Horus</h3>
-                            <p>A Horus Faculdades surgiu em 2005, com um nome forte...</p>
-                            <p><small>Criado em 23/11/2013 por <em>Marcelo Schaefer</em></small></p>
-                            <a href="#"><span> + </span>Saiba mais</a>
-                        </article>
-                        
-                        <article>
-                            <h3>Primeira aula da POS de TI na Horus</h3>
-                            <p>A Horus Faculdades surgiu em 2005, com um nome forte...</p>
-                            <p><small>Criado em 23/11/2013 por <em>Marcelo Schaefer</em></small></p>
-                            <a href="#"><span> + </span>Saiba mais</a>
-                        </article>
-                        
-                        <article>
-                            <h3>Primeira aula da POS de TI na Horus</h3>
-                            <p>A Horus Faculdades surgiu em 2005, com um nome forte...</p>
-                            <p><small>Criado em 23/11/2013 por <em>Marcelo Schaefer</em></small></p>
-                            <a href="#"><span> + </span>Saiba mais</a>
-                        </article>
-                        
+                        <form id="form">
+                            <table style="width: 90%">
+                                <tr>
+                                    <td style="text-align: right; width: 120px;">
+                                        <label>CEP:</label>
+                                    </td>
+                                    <td>
+                                        <input id="cep" name="CEP" style="width: 100px; text-align: center;">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="text-align: right;">
+                                        <label>Endereço:</label>
+                                    </td>
+                                    <td>
+                                        <input id="endereco" name="ENDERECO" style="width: 100%;">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="text-align: right;">
+                                        <label>Número:</label>
+                                    </td>
+                                    <td>
+                                        <input id="numero" name="NUMERO" style="width: 100px;">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="text-align: right;">
+                                        <label>Complemento:</label>
+                                    </td>
+                                    <td>
+                                        <input id="complemento" name="COMPLEMENTO" style="width: 100%;">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="text-align: right;">
+                                        <label>Bairro:</label>
+                                    </td>
+                                    <td>
+                                        <input id="bairro" name="BAIRRO" style="width: 100%;">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="text-align: right;">
+                                        <label>Cidade:</label>
+                                    </td>
+                                    <td>
+                                        <input id="cidade" name="CIDADE" style="width: 100%;">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="text-align: right;">
+                                        <label>Estado:</label>
+                                    </td>
+                                    <td>
+                                        <input id="uf" name="UF" style="width: 100px;">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2" style="text-align: right;">
+                                        <button type="button" id="limpar">Limpar</button>
+                                    </td>
+                                </tr>
+                            </table>
+                        </form>
                     </div>
                 </section>
-                <section class="col-3 produtos">
+                <section class="col-2 produtos">
                     <div>
-                        
                         <article>
-                            <img src="img/ninja.png" alt="">
+                            <img src="img/pinguin_os-tux-ubuntu-2013.png" alt="">
                             <h3>Primeira aula da POS de TI na Horus</h3>
                             <p>A Horus Faculdades surgiu em 2005, com um nome forte. Testes de artigo para produtos...</p>
                             <p><small>Criado em 23/11/2013 por <em>Marcelo Schaefer</em></small></p>
                             <a href="#"><span> + </span>Saiba mais</a>
                         </article>
-                        
                     </div>
                 </section>
             </div>
-
-        </div> 
-
+        </div>
     </body>
-
 </html>
