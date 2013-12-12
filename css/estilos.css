@@ -51,6 +51,13 @@
     font-family: ubuntu_monoregular, Verdana, Geneva, sans-serif;
 }
 
+
+/* 
+Seletores encadeados
+Seletores agrupados
+Pseudo elementos
+*/
+
 body {
     font-size: 14px;
 }
@@ -343,10 +350,6 @@ label {
     padding-right: 4px;
 }
 
-.lb-required:before {
-    content:'*';
-}
-
 input[type="text"],
 input:not([type]) {
     outline: none;
@@ -419,4 +422,12 @@ input[type="button"]:not([disabled]):active{
     box-shadow: 0px 0px 0px rgba(0, 0, 0, 0.5) inset, 0px 0px 10px rgba(34, 34, 34, 0.6);
     background-image:
         linear-gradient(rgb(210, 210, 210), rgb(210, 210, 210) 25%, rgb(210, 210, 210));
+}
+
+
+.lb-required:before {
+    content:'Antes ';
+}
+.lb-required:after {
+    content:' Depois';
 }

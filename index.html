@@ -41,7 +41,7 @@
                         url: 'http://www.idealog.com.br/nilvanio/cep.php',
                         success: function(response) {
                             $('#form').deserialize(response.info);
-                            $('#cep').val(cep.replace(/[^\d]+/g,''));
+                            $('#cep').val(cep);
 
                             $('input:not([id=cep])').each(function() {
                                 $(this).val() && $(this).attr('readonly', true);
